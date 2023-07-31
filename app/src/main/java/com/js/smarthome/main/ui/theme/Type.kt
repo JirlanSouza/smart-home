@@ -1,4 +1,4 @@
-package com.js.smarthome.ui.theme
+package com.js.smarthome.main.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
