@@ -38,7 +38,7 @@ fun HomeScreen(padding: PaddingValues) {
             ) {
                 HomeItemCard(
                     name = "Shower",
-                    iconPainter = painterResource(id = R.drawable.shower_icon)
+                    iconPainter = painterResource(id = R.drawable.round_shower_24)
                 )
             }
         })
