@@ -38,7 +38,9 @@ fun SignInForm(
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.padding(horizontal = 8.dp, vertical = 32.dp)
     ) {
-        Spacer(modifier = Modifier.height(60.dp))
+        Text(text = "Login", style = MaterialTheme.typography.titleLarge)
+
+        Spacer(modifier = Modifier.height(72.dp))
 
         OutlinedTextField(
             singleLine = true,
