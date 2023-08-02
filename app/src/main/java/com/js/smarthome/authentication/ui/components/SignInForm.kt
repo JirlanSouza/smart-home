@@ -17,7 +17,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.js.smarthome.R
 
 @ExperimentalMaterial3Api
 @Composable
@@ -38,7 +40,10 @@ fun SignInForm(
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.padding(horizontal = 8.dp, vertical = 32.dp)
     ) {
-        Text(text = "Login", style = MaterialTheme.typography.titleLarge)
+        Text(
+            text = stringResource(id = R.string.sign_in_form_title),
+            style = MaterialTheme.typography.titleLarge
+        )
 
         Spacer(modifier = Modifier.height(72.dp))
 
@@ -47,7 +52,7 @@ fun SignInForm(
             value = userName,
             isError = userNameError,
             onValueChange = { onUserNameChange(it) },
-            label = { Text("User name") },
+            label = { Text(stringResource(id = R.string.user_name_field_label)) },
             modifier = Modifier.fillMaxWidth(),
             keyboardActions = KeyboardActions(
                 onDone = { passwordFocusRequester.requestFocus() },
@@ -59,7 +64,7 @@ fun SignInForm(
         PasswordField(
             value = password,
             isError = passwordError,
-            label = "Password",
+            label = stringResource(id = R.string.password_field_label),
             onValueChange = { onUserPasswordChange(it) },
             modifier = Modifier
                 .fillMaxWidth()
@@ -75,7 +80,7 @@ fun SignInForm(
                 .fillMaxWidth(),
             onClick = { signIn() }
         ) {
-            Text("Entrar")
+            Text(stringResource(id = R.string.sign_in_button_text))
         }
     }
 }

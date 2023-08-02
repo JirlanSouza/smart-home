@@ -17,7 +17,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.js.smarthome.R
 import com.js.smarthome.authentication.ui.components.SignInForm
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -29,6 +31,10 @@ fun AuthenticationScreen(
     signIn: () -> Unit,
 ) {
     var signInMode by remember { mutableStateOf(true) }
+    val sigInModeButtonText = stringResource(
+        id = if (signInMode) R.string.sign_in_mode_button_text
+        else R.string.sign_up_mode_button_text
+    )
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -55,7 +61,7 @@ fun AuthenticationScreen(
         Divider(modifier = Modifier.padding(all = 16.dp))
 
         TextButton(onClick = { signInMode = !signInMode }) {
-            Text(text = "Criar uma conta", color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(text = sigInModeButtonText, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
     }
 }
