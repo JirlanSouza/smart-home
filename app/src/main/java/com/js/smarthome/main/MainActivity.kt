@@ -49,7 +49,7 @@ class MainActivity : ComponentActivity() {
                                 loginUiState,
                                 loginViewModel::setUserName,
                                 loginViewModel::setPassword,
-                                loginViewModel::login
+                                loginViewModel::signIn
                             )
                         }
 

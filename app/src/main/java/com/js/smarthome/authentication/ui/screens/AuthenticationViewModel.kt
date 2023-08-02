@@ -30,7 +30,7 @@ class AuthenticationViewModel @Inject constructor(
         validatePassword()
     }
 
-    fun login() {
+    fun signIn() {
         toggleLoading()
 
         validateUserName()
@@ -45,7 +45,7 @@ class AuthenticationViewModel @Inject constructor(
 
         if (result.success) {
             _userProfile.value = result.user
-            toggleLoading()
+            _uiState.value = AuthenticationUiState()
             return
         }
 
