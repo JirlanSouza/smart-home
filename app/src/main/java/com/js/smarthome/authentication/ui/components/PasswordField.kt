@@ -1,5 +1,6 @@
 package com.js.smarthome.authentication.ui.components
 
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -24,6 +25,7 @@ fun PasswordField(
     isError: Boolean,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
+    keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
     var isVisibleValue by remember { mutableStateOf(false) }
 
@@ -47,6 +49,7 @@ fun PasswordField(
         visualTransformation = (
                 if (isVisibleValue) VisualTransformation.None else PasswordVisualTransformation()
                 ),
-        modifier = modifier
+        modifier = modifier,
+        keyboardActions = keyboardActions
     )
 }

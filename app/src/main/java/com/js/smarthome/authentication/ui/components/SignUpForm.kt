@@ -23,17 +23,25 @@ import com.js.smarthome.R
 
 @ExperimentalMaterial3Api
 @Composable
-fun SignInForm(
+fun SignUpForm(
+    name: String,
     userName: String,
     password: String,
+    confirmPassword: String,
+    nameError: Boolean,
     userNameError: Boolean,
     passwordError: Boolean,
+    confirmPasswordError: Boolean,
     isLoading: Boolean,
-    onUserNameChange: (userName: String) -> Unit,
-    onUserPasswordChange: (password: String) -> Unit,
+    onNameChange: (String) -> Unit,
+    onUserNameChange: (String) -> Unit,
+    onPasswordChange: (String) -> Unit,
+    onConfirmPasswordChange: (String) -> Unit,
     signIn: () -> Unit,
 ) {
+    val userNameFocusRequester = FocusRequester()
     val passwordFocusRequester = FocusRequester()
+    val confirmPasswordFocusRequester = FocusRequester()
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -41,11 +49,25 @@ fun SignInForm(
         modifier = Modifier.padding(horizontal = 8.dp, vertical = 32.dp)
     ) {
         Text(
-            text = stringResource(id = R.string.sign_in_form_title),
-            style = MaterialTheme.typography.titleLarge
+            text = stringResource(id = R.string.sign_up_form_title),
+            style = MaterialTheme.typography.titleLarge,
         )
 
         Spacer(modifier = Modifier.height(72.dp))
+
+        OutlinedTextField(
+            singleLine = true,
+            value = name,
+            isError = nameError,
+            onValueChange = { onNameChange(it) },
+            label = { Text(stringResource(id = R.string.user_name_field_label)) },
+            modifier = Modifier.fillMaxWidth(),
+            keyboardActions = KeyboardActions(
+                onDone = { userNameFocusRequester.requestFocus() },
+            )
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedTextField(
             singleLine = true,
@@ -53,7 +75,9 @@ fun SignInForm(
             isError = userNameError,
             onValueChange = { onUserNameChange(it) },
             label = { Text(stringResource(id = R.string.account_user_name_field_label)) },
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .focusRequester(userNameFocusRequester),
             keyboardActions = KeyboardActions(
                 onDone = { passwordFocusRequester.requestFocus() },
             )
@@ -65,10 +89,25 @@ fun SignInForm(
             value = password,
             isError = passwordError,
             label = stringResource(id = R.string.password_field_label),
-            onValueChange = { onUserPasswordChange(it) },
+            onValueChange = { onPasswordChange(it) },
             modifier = Modifier
                 .fillMaxWidth()
                 .focusRequester(passwordFocusRequester),
+            keyboardActions = KeyboardActions(
+                onDone = { confirmPasswordFocusRequester.requestFocus() }
+            )
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        PasswordField(
+            value = confirmPassword,
+            isError = confirmPasswordError,
+            label = stringResource(id = R.string.confirm_password_field_label),
+            onValueChange = { onConfirmPasswordChange(it) },
+            modifier = Modifier
+                .fillMaxWidth()
+                .focusRequester(confirmPasswordFocusRequester)
         )
 
         Spacer(modifier = Modifier.height(60.dp))
@@ -80,7 +119,7 @@ fun SignInForm(
                 .fillMaxWidth(),
             onClick = { signIn() }
         ) {
-            Text(stringResource(id = R.string.sign_in_button_text))
+            Text(stringResource(id = R.string.sign_up_button_text))
         }
     }
 }

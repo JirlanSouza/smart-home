@@ -1,9 +1,13 @@
 <resources>
     <string name="app_name">Smart Home</string>
     <string name="sign_in_form_title">Login</string>
-    <string name="user_name_field_label">Usuário</string>
+    <string name="account_user_name_field_label">Usuário</string>
     <string name="password_field_label">Senha</string>
     <string name="sign_in_button_text">Entrar</string>
     <string name="sign_in_mode_button_text">Criar conta</string>
     <string name="sign_up_mode_button_text">Entar com uma conta existente</string>
+    <string name="sign_up_form_title">Criar conta</string>
+    <string name="confirm_password_field_label">Confirmação da senha</string>
+    <string name="sign_up_button_text">Criar conta</string>
+    <string name="user_name_field_label">Nome</string>
 </resources>

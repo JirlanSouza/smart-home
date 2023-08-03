@@ -3,7 +3,6 @@ package com.js.smarthome.authentication.ui.screens
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -21,6 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.js.smarthome.R
 import com.js.smarthome.authentication.ui.components.SignInForm
+import com.js.smarthome.authentication.ui.components.SignUpForm
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -38,10 +38,9 @@ fun AuthenticationScreen(
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
             .fillMaxSize()
-            .offset(y = (-48).dp)
     ) {
 
         if (signInMode) {
@@ -56,12 +55,39 @@ fun AuthenticationScreen(
                 signIn = signIn
             )
 
+        } else {
+            SignUpForm(
+                name = "",
+                userName = "",
+                password = "",
+                confirmPassword = "",
+                nameError = false,
+                userNameError = false,
+                passwordError = false,
+                confirmPasswordError = false,
+                isLoading = false,
+                onNameChange = {},
+                onUserNameChange = {},
+                onPasswordChange = {},
+                onConfirmPasswordChange = {}
+            ) {
+
+            }
         }
 
-        Divider(modifier = Modifier.padding(all = 16.dp))
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(bottom = 64.dp)
+        ) {
+            Divider(modifier = Modifier.padding(all = 8.dp))
 
-        TextButton(onClick = { signInMode = !signInMode }) {
-            Text(text = sigInModeButtonText, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            TextButton(onClick = { signInMode = !signInMode }) {
+                Text(
+                    text = sigInModeButtonText,
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+            }
         }
     }
 }
